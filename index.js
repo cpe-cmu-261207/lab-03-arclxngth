@@ -1,3 +1,5 @@
+import { isBigIntLiteral } from "typescript";
+
 /**
  * Returns the sum of the given numbers.
  * @param {number} a the first number
@@ -6,8 +8,8 @@
  */
 export const sum = (a, b) => {
   // TODO: implement here
-
-}
+  return a + b;
+};
 
 /**
  * Returns the array after applying the given function to each element in
@@ -20,8 +22,13 @@ export const sum = (a, b) => {
  */
 export const map = (arr, callback) => {
   // TODO: implement here
-
-}
+  let ans = [];
+  for (let i = 0; i < arr.length; i++) {
+    let idx = callback(arr[i], i);
+    ans.push(idx);
+  }
+  return ans;
+};
 
 /**
  * Returns the array containing elements that makes the given predicate true.
@@ -33,8 +40,15 @@ export const map = (arr, callback) => {
  */
 export const filter = (arr, callback) => {
   // TODO: implement here
-
-}
+  let list = [];
+  for (let i = 0; i < arr.length; i++) {
+    const result = callback(arr[i], i);
+    if (result) {
+      list.push(arr[i]);
+    }
+  }
+  return list;
+};
 
 /**
  * Returns the result of aggregating elements in the array with the given
@@ -54,4 +68,8 @@ export const filter = (arr, callback) => {
 export const reduce = (arr, callback, initialValue) => {
   // TODO: implement here
 
-}
+  for(let i = 0; i < arr.length; i++){
+    initialValue = callback(initialValue, arr[i], i)
+  }
+  return initialValue
+};
